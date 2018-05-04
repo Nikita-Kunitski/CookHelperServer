@@ -1,0 +1,125 @@
+﻿
+@model WebApplication1.Models.BOOK_DISH
+
+@{
+    ViewBag.Title = "Create";
+    int count = 1;
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" id="parentElement">
+        <h2>Добавление рецепта</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Наименование блюда</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name_dish, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name_dish, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Время приготовления</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.time_pr, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.time_pr, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Кухня</label>
+            <div class="col-md-10">
+                @Html.DropDownList("C_id_cuisine_national", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.C_id_cuisine_national, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Метод приготовления</label>
+            <div class="col-md-10">
+                @Html.DropDownList("C_id_cooking_method", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.C_id_cooking_method, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Тип блюда</label>
+            <div class="col-md-10">
+                @Html.DropDownList("C_id_type_dish", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.C_id_type_dish, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Категория</label>
+            <div class="col-md-10">
+                @Html.DropDownList("C_id_cuisine_type", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.C_id_cuisine_type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Каллории</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.calories, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.calories, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Фото</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.imageData, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.imageData, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h2>Этапы приготовления</h2>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Этап 1</label>
+
+            <div class="col-md-10 row">
+                <input class="form-control col-md-10" type="text" />
+                <input class="btn btn-default" type="button" value="  +  " onclick="addQuestion()" />
+            </div>
+        </div>
+
+        <div class="form-group" id="parentId"></div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+        <script>
+            var num = 2;
+            function addQuestion() {
+
+                var newdiv = document.createElement("div");
+                newdiv.setAttribute("class", "form-group");
+                newdiv.innerHTML = "<label class='control-label col-md-2'>Этап " + num++ + "</label><div class='col-md-10 row'><input class='form-control col-md-10' type='text' /><input class='btn btn-default' type='button' value='  +  ' onclick='addQuestion()' /></div>";
+                var div = document.getElementById("parentId");
+                var parentDiv = div.parentElement;
+                parentDiv.insertBefore(newdiv, div);
+                return false;
+            }
+        </script>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку рецептов", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

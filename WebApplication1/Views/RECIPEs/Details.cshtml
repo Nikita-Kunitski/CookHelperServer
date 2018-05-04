@@ -1,0 +1,42 @@
+﻿@model WebApplication1.Models.RECIPE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RECIPE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.kol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BOOK_DISH.name_dish)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BOOK_DISH.name_dish)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INGREDIENT.name_ingredient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INGREDIENT.name_ingredient)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.C_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

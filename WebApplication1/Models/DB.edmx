@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CookHelperModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOOK_DISH">
+          <Key>
+            <PropertyRef Name="_id_dish" />
+          </Key>
+          <Property Name="_id_dish" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_dish" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="time_pr" Type="int" Nullable="false" />
+          <Property Name="_id_cuisine_national" Type="int" Nullable="false" />
+          <Property Name="_id_cooking_method" Type="int" Nullable="false" />
+          <Property Name="_id_type_dish" Type="int" Nullable="false" />
+          <Property Name="_id_cuisine_type" Type="int" Nullable="false" />
+          <Property Name="calories" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="imageData" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="COOKING_METHOD">
+          <Key>
+            <PropertyRef Name="_id_cooking_method" />
+          </Key>
+          <Property Name="_id_cooking_method" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_method" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COOKING_STAGES">
+          <Key>
+            <PropertyRef Name="_id_cooking_stages" />
+          </Key>
+          <Property Name="_id_cooking_stages" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="_id_dish" Type="int" Nullable="false" />
+          <Property Name="_text" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUISINE_NATIONAL">
+          <Key>
+            <PropertyRef Name="_id_cuisine_national" />
+          </Key>
+          <Property Name="_id_cuisine_national" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_cuisine" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUISINE_TYPE">
+          <Key>
+            <PropertyRef Name="_id_cuisine_type" />
+          </Key>
+          <Property Name="_id_cuisine_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_cuisine" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="_id_ingred" />
+          </Key>
+          <Property Name="_id_ingred" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_ingredient" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_unit_measure" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECIPE">
+          <Key>
+            <PropertyRef Name="_id" />
+          </Key>
+          <Property Name="_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="_id_ingred" Type="int" Nullable="false" />
+          <Property Name="_id_dish" Type="int" Nullable="false" />
+          <Property Name="kol" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TYPE_DISH">
+          <Key>
+            <PropertyRef Name="_id_type_dish" />
+          </Key>
+          <Property Name="_id_type_dish" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_type" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UNIT_MEASURE">
+          <Key>
+            <PropertyRef Name="id_unit_measure" />
+          </Key>
+          <Property Name="id_unit_measure" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_unit_measure" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <Association Name="BOOK_DISH_COOKING_METHOD_FK">
+          <End Role="COOKING_METHOD" Type="Self.COOKING_METHOD" Multiplicity="1" />
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COOKING_METHOD">
+              <PropertyRef Name="_id_cooking_method" />
+            </Principal>
+            <Dependent Role="BOOK_DISH">
+              <PropertyRef Name="_id_cooking_method" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_DISH_CUISINE_NATIONAL_FK">
+          <End Role="CUISINE_NATIONAL" Type="Self.CUISINE_NATIONAL" Multiplicity="1" />
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUISINE_NATIONAL">
+              <PropertyRef Name="_id_cuisine_national" />
+            </Principal>
+            <Dependent Role="BOOK_DISH">
+              <PropertyRef Name="_id_cuisine_national" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_DISH_CUISINE_TYPE_FK">
+          <End Role="CUISINE_TYPE" Type="Self.CUISINE_TYPE" Multiplicity="1" />
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUISINE_TYPE">
+              <PropertyRef Name="_id_cuisine_type" />
+            </Principal>
+            <Dependent Role="BOOK_DISH">
+              <PropertyRef Name="_id_cuisine_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_DISH_TYPE_DISH_FK">
+          <End Role="TYPE_DISH" Type="Self.TYPE_DISH" Multiplicity="1" />
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE_DISH">
+              <PropertyRef Name="_id_type_dish" />
+            </Principal>
+            <Dependent Role="BOOK_DISH">
+              <PropertyRef Name="_id_type_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="COOKING_STAGES_DISH_ID_FK">
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="1" />
+          <End Role="COOKING_STAGES" Type="Self.COOKING_STAGES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK_DISH">
+              <PropertyRef Name="_id_dish" />
+            </Principal>
+            <Dependent Role="COOKING_STAGES">
+              <PropertyRef Name="_id_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_UNIT_MEASURE_FK">
+          <End Role="UNIT_MEASURE" Type="Self.UNIT_MEASURE" Multiplicity="1" />
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNIT_MEASURE">
+              <PropertyRef Name="id_unit_measure" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="id_unit_measure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIPE_DISH_ID_FK">
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="1" />
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK_DISH">
+              <PropertyRef Name="_id_dish" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="_id_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIPE_INGREDIENT_ID_FK">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1" />
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="_id_ingred" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="_id_ingred" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище CookHelperModelContainer">
+          <EntitySet Name="BOOK_DISH" EntityType="Self.BOOK_DISH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COOKING_METHOD" EntityType="Self.COOKING_METHOD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COOKING_STAGES" EntityType="Self.COOKING_STAGES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUISINE_NATIONAL" EntityType="Self.CUISINE_NATIONAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUISINE_TYPE" EntityType="Self.CUISINE_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RECIPE" EntityType="Self.RECIPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TYPE_DISH" EntityType="Self.TYPE_DISH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UNIT_MEASURE" EntityType="Self.UNIT_MEASURE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="BOOK_DISH_COOKING_METHOD_FK" Association="Self.BOOK_DISH_COOKING_METHOD_FK">
+            <End Role="COOKING_METHOD" EntitySet="COOKING_METHOD" />
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_DISH_CUISINE_NATIONAL_FK" Association="Self.BOOK_DISH_CUISINE_NATIONAL_FK">
+            <End Role="CUISINE_NATIONAL" EntitySet="CUISINE_NATIONAL" />
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_DISH_CUISINE_TYPE_FK" Association="Self.BOOK_DISH_CUISINE_TYPE_FK">
+            <End Role="CUISINE_TYPE" EntitySet="CUISINE_TYPE" />
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_DISH_TYPE_DISH_FK" Association="Self.BOOK_DISH_TYPE_DISH_FK">
+            <End Role="TYPE_DISH" EntitySet="TYPE_DISH" />
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+          </AssociationSet>
+          <AssociationSet Name="COOKING_STAGES_DISH_ID_FK" Association="Self.COOKING_STAGES_DISH_ID_FK">
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+            <End Role="COOKING_STAGES" EntitySet="COOKING_STAGES" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_UNIT_MEASURE_FK" Association="Self.INGREDIENT_UNIT_MEASURE_FK">
+            <End Role="UNIT_MEASURE" EntitySet="UNIT_MEASURE" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="RECIPE_DISH_ID_FK" Association="Self.RECIPE_DISH_ID_FK">
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+            <End Role="RECIPE" EntitySet="RECIPE" />
+          </AssociationSet>
+          <AssociationSet Name="RECIPE_INGREDIENT_ID_FK" Association="Self.RECIPE_INGREDIENT_ID_FK">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="RECIPE" EntitySet="RECIPE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CookHelperModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOOK_DISH">
+          <Key>
+            <PropertyRef Name="C_id_dish" />
+          </Key>
+          <Property Name="C_id_dish" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_dish" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="time_pr" Type="Int32" Nullable="false" />
+          <Property Name="C_id_cuisine_national" Type="Int32" Nullable="false" />
+          <Property Name="C_id_cooking_method" Type="Int32" Nullable="false" />
+          <Property Name="C_id_type_dish" Type="Int32" Nullable="false" />
+          <Property Name="C_id_cuisine_type" Type="Int32" Nullable="false" />
+          <Property Name="calories" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="imageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="COOKING_METHOD" Relationship="Self.BOOK_DISH_COOKING_METHOD_FK" FromRole="BOOK_DISH" ToRole="COOKING_METHOD" />
+          <NavigationProperty Name="CUISINE_NATIONAL" Relationship="Self.BOOK_DISH_CUISINE_NATIONAL_FK" FromRole="BOOK_DISH" ToRole="CUISINE_NATIONAL" />
+          <NavigationProperty Name="CUISINE_TYPE" Relationship="Self.BOOK_DISH_CUISINE_TYPE_FK" FromRole="BOOK_DISH" ToRole="CUISINE_TYPE" />
+          <NavigationProperty Name="TYPE_DISH" Relationship="Self.BOOK_DISH_TYPE_DISH_FK" FromRole="BOOK_DISH" ToRole="TYPE_DISH" />
+          <NavigationProperty Name="COOKING_STAGES" Relationship="Self.COOKING_STAGES_DISH_ID_FK" FromRole="BOOK_DISH" ToRole="COOKING_STAGES" />
+          <NavigationProperty Name="RECIPEs" Relationship="Self.RECIPE_DISH_ID_FK" FromRole="BOOK_DISH" ToRole="RECIPE" />
+        </EntityType>
+        <EntityType Name="COOKING_METHOD">
+          <Key>
+            <PropertyRef Name="C_id_cooking_method" />
+          </Key>
+          <Property Name="C_id_cooking_method" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_method" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BOOK_DISH" Relationship="Self.BOOK_DISH_COOKING_METHOD_FK" FromRole="COOKING_METHOD" ToRole="BOOK_DISH" />
+        </EntityType>
+        <EntityType Name="COOKING_STAGES">
+          <Key>
+            <PropertyRef Name="C_id_cooking_stages" />
+          </Key>
+          <Property Name="C_id_cooking_stages" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_id_dish" Type="Int32" Nullable="false" />
+          <Property Name="C_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BOOK_DISH" Relationship="Self.COOKING_STAGES_DISH_ID_FK" FromRole="COOKING_STAGES" ToRole="BOOK_DISH" />
+        </EntityType>
+        <EntityType Name="CUISINE_NATIONAL">
+          <Key>
+            <PropertyRef Name="C_id_cuisine_national" />
+          </Key>
+          <Property Name="C_id_cuisine_national" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_cuisine" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BOOK_DISH" Relationship="Self.BOOK_DISH_CUISINE_NATIONAL_FK" FromRole="CUISINE_NATIONAL" ToRole="BOOK_DISH" />
+        </EntityType>
+        <EntityType Name="CUISINE_TYPE">
+          <Key>
+            <PropertyRef Name="C_id_cuisine_type" />
+          </Key>
+          <Property Name="C_id_cuisine_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_cuisine" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BOOK_DISH" Relationship="Self.BOOK_DISH_CUISINE_TYPE_FK" FromRole="CUISINE_TYPE" ToRole="BOOK_DISH" />
+        </EntityType>
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="C_id_ingred" />
+          </Key>
+          <Property Name="C_id_ingred" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_ingredient" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_unit_measure" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UNIT_MEASURE" Relationship="Self.INGREDIENT_UNIT_MEASURE_FK" FromRole="INGREDIENT" ToRole="UNIT_MEASURE" />
+          <NavigationProperty Name="RECIPEs" Relationship="Self.RECIPE_INGREDIENT_ID_FK" FromRole="INGREDIENT" ToRole="RECIPE" />
+        </EntityType>
+        <EntityType Name="RECIPE">
+          <Key>
+            <PropertyRef Name="C_id" />
+          </Key>
+          <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_id_ingred" Type="Int32" Nullable="false" />
+          <Property Name="C_id_dish" Type="Int32" Nullable="false" />
+          <Property Name="kol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BOOK_DISH" Relationship="Self.RECIPE_DISH_ID_FK" FromRole="RECIPE" ToRole="BOOK_DISH" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.RECIPE_INGREDIENT_ID_FK" FromRole="RECIPE" ToRole="INGREDIENT" />
+        </EntityType>
+        <EntityType Name="TYPE_DISH">
+          <Key>
+            <PropertyRef Name="C_id_type_dish" />
+          </Key>
+          <Property Name="C_id_type_dish" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BOOK_DISH" Relationship="Self.BOOK_DISH_TYPE_DISH_FK" FromRole="TYPE_DISH" ToRole="BOOK_DISH" />
+        </EntityType>
+        <EntityType Name="UNIT_MEASURE">
+          <Key>
+            <PropertyRef Name="id_unit_measure" />
+          </Key>
+          <Property Name="id_unit_measure" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_unit_measure" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="INGREDIENTs" Relationship="Self.INGREDIENT_UNIT_MEASURE_FK" FromRole="UNIT_MEASURE" ToRole="INGREDIENT" />
+        </EntityType>
+        <Association Name="BOOK_DISH_COOKING_METHOD_FK">
+          <End Role="COOKING_METHOD" Type="Self.COOKING_METHOD" Multiplicity="1" />
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COOKING_METHOD">
+              <PropertyRef Name="C_id_cooking_method" />
+            </Principal>
+            <Dependent Role="BOOK_DISH">
+              <PropertyRef Name="C_id_cooking_method" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_DISH_CUISINE_NATIONAL_FK">
+          <End Role="CUISINE_NATIONAL" Type="Self.CUISINE_NATIONAL" Multiplicity="1" />
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUISINE_NATIONAL">
+              <PropertyRef Name="C_id_cuisine_national" />
+            </Principal>
+            <Dependent Role="BOOK_DISH">
+              <PropertyRef Name="C_id_cuisine_national" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_DISH_CUISINE_TYPE_FK">
+          <End Role="CUISINE_TYPE" Type="Self.CUISINE_TYPE" Multiplicity="1" />
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUISINE_TYPE">
+              <PropertyRef Name="C_id_cuisine_type" />
+            </Principal>
+            <Dependent Role="BOOK_DISH">
+              <PropertyRef Name="C_id_cuisine_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOK_DISH_TYPE_DISH_FK">
+          <End Role="TYPE_DISH" Type="Self.TYPE_DISH" Multiplicity="1" />
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE_DISH">
+              <PropertyRef Name="C_id_type_dish" />
+            </Principal>
+            <Dependent Role="BOOK_DISH">
+              <PropertyRef Name="C_id_type_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="COOKING_STAGES_DISH_ID_FK">
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="1" />
+          <End Role="COOKING_STAGES" Type="Self.COOKING_STAGES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK_DISH">
+              <PropertyRef Name="C_id_dish" />
+            </Principal>
+            <Dependent Role="COOKING_STAGES">
+              <PropertyRef Name="C_id_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIPE_DISH_ID_FK">
+          <End Role="BOOK_DISH" Type="Self.BOOK_DISH" Multiplicity="1" />
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK_DISH">
+              <PropertyRef Name="C_id_dish" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="C_id_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_UNIT_MEASURE_FK">
+          <End Role="UNIT_MEASURE" Type="Self.UNIT_MEASURE" Multiplicity="1" />
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNIT_MEASURE">
+              <PropertyRef Name="id_unit_measure" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="id_unit_measure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIPE_INGREDIENT_ID_FK">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1" />
+          <End Role="RECIPE" Type="Self.RECIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="C_id_ingred" />
+            </Principal>
+            <Dependent Role="RECIPE">
+              <PropertyRef Name="C_id_ingred" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CookHelperEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOOK_DISH" EntityType="Self.BOOK_DISH" />
+          <EntitySet Name="COOKING_METHOD" EntityType="Self.COOKING_METHOD" />
+          <EntitySet Name="COOKING_STAGES" EntityType="Self.COOKING_STAGES" />
+          <EntitySet Name="CUISINE_NATIONAL" EntityType="Self.CUISINE_NATIONAL" />
+          <EntitySet Name="CUISINE_TYPE" EntityType="Self.CUISINE_TYPE" />
+          <EntitySet Name="INGREDIENTs" EntityType="Self.INGREDIENT" />
+          <EntitySet Name="RECIPEs" EntityType="Self.RECIPE" />
+          <EntitySet Name="TYPE_DISH" EntityType="Self.TYPE_DISH" />
+          <EntitySet Name="UNIT_MEASURE" EntityType="Self.UNIT_MEASURE" />
+          <AssociationSet Name="BOOK_DISH_COOKING_METHOD_FK" Association="Self.BOOK_DISH_COOKING_METHOD_FK">
+            <End Role="COOKING_METHOD" EntitySet="COOKING_METHOD" />
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_DISH_CUISINE_NATIONAL_FK" Association="Self.BOOK_DISH_CUISINE_NATIONAL_FK">
+            <End Role="CUISINE_NATIONAL" EntitySet="CUISINE_NATIONAL" />
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_DISH_CUISINE_TYPE_FK" Association="Self.BOOK_DISH_CUISINE_TYPE_FK">
+            <End Role="CUISINE_TYPE" EntitySet="CUISINE_TYPE" />
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+          </AssociationSet>
+          <AssociationSet Name="BOOK_DISH_TYPE_DISH_FK" Association="Self.BOOK_DISH_TYPE_DISH_FK">
+            <End Role="TYPE_DISH" EntitySet="TYPE_DISH" />
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+          </AssociationSet>
+          <AssociationSet Name="COOKING_STAGES_DISH_ID_FK" Association="Self.COOKING_STAGES_DISH_ID_FK">
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+            <End Role="COOKING_STAGES" EntitySet="COOKING_STAGES" />
+          </AssociationSet>
+          <AssociationSet Name="RECIPE_DISH_ID_FK" Association="Self.RECIPE_DISH_ID_FK">
+            <End Role="BOOK_DISH" EntitySet="BOOK_DISH" />
+            <End Role="RECIPE" EntitySet="RECIPEs" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_UNIT_MEASURE_FK" Association="Self.INGREDIENT_UNIT_MEASURE_FK">
+            <End Role="UNIT_MEASURE" EntitySet="UNIT_MEASURE" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENTs" />
+          </AssociationSet>
+          <AssociationSet Name="RECIPE_INGREDIENT_ID_FK" Association="Self.RECIPE_INGREDIENT_ID_FK">
+            <End Role="INGREDIENT" EntitySet="INGREDIENTs" />
+            <End Role="RECIPE" EntitySet="RECIPEs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CookHelperModelContainer" CdmEntityContainer="CookHelperEntities">
+          <EntitySetMapping Name="BOOK_DISH">
+            <EntityTypeMapping TypeName="CookHelperModel.BOOK_DISH">
+              <MappingFragment StoreEntitySet="BOOK_DISH">
+                <ScalarProperty Name="C_id_dish" ColumnName="_id_dish" />
+                <ScalarProperty Name="name_dish" ColumnName="name_dish" />
+                <ScalarProperty Name="time_pr" ColumnName="time_pr" />
+                <ScalarProperty Name="C_id_cuisine_national" ColumnName="_id_cuisine_national" />
+                <ScalarProperty Name="C_id_cooking_method" ColumnName="_id_cooking_method" />
+                <ScalarProperty Name="C_id_type_dish" ColumnName="_id_type_dish" />
+                <ScalarProperty Name="C_id_cuisine_type" ColumnName="_id_cuisine_type" />
+                <ScalarProperty Name="calories" ColumnName="calories" />
+                <ScalarProperty Name="imageData" ColumnName="imageData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COOKING_METHOD">
+            <EntityTypeMapping TypeName="CookHelperModel.COOKING_METHOD">
+              <MappingFragment StoreEntitySet="COOKING_METHOD">
+                <ScalarProperty Name="C_id_cooking_method" ColumnName="_id_cooking_method" />
+                <ScalarProperty Name="name_method" ColumnName="name_method" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COOKING_STAGES">
+            <EntityTypeMapping TypeName="CookHelperModel.COOKING_STAGES">
+              <MappingFragment StoreEntitySet="COOKING_STAGES">
+                <ScalarProperty Name="C_id_cooking_stages" ColumnName="_id_cooking_stages" />
+                <ScalarProperty Name="C_id_dish" ColumnName="_id_dish" />
+                <ScalarProperty Name="C_text" ColumnName="_text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUISINE_NATIONAL">
+            <EntityTypeMapping TypeName="CookHelperModel.CUISINE_NATIONAL">
+              <MappingFragment StoreEntitySet="CUISINE_NATIONAL">
+                <ScalarProperty Name="C_id_cuisine_national" ColumnName="_id_cuisine_national" />
+                <ScalarProperty Name="name_cuisine" ColumnName="name_cuisine" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUISINE_TYPE">
+            <EntityTypeMapping TypeName="CookHelperModel.CUISINE_TYPE">
+              <MappingFragment StoreEntitySet="CUISINE_TYPE">
+                <ScalarProperty Name="C_id_cuisine_type" ColumnName="_id_cuisine_type" />
+                <ScalarProperty Name="name_cuisine" ColumnName="name_cuisine" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENTs">
+            <EntityTypeMapping TypeName="CookHelperModel.INGREDIENT">
+              <MappingFragment StoreEntitySet="INGREDIENT">
+                <ScalarProperty Name="C_id_ingred" ColumnName="_id_ingred" />
+                <ScalarProperty Name="name_ingredient" ColumnName="name_ingredient" />
+                <ScalarProperty Name="id_unit_measure" ColumnName="id_unit_measure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIPEs">
+            <EntityTypeMapping TypeName="CookHelperModel.RECIPE">
+              <MappingFragment StoreEntitySet="RECIPE">
+                <ScalarProperty Name="C_id" ColumnName="_id" />
+                <ScalarProperty Name="C_id_ingred" ColumnName="_id_ingred" />
+                <ScalarProperty Name="C_id_dish" ColumnName="_id_dish" />
+                <ScalarProperty Name="kol" ColumnName="kol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYPE_DISH">
+            <EntityTypeMapping TypeName="CookHelperModel.TYPE_DISH">
+              <MappingFragment StoreEntitySet="TYPE_DISH">
+                <ScalarProperty Name="C_id_type_dish" ColumnName="_id_type_dish" />
+                <ScalarProperty Name="name_type" ColumnName="name_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UNIT_MEASURE">
+            <EntityTypeMapping TypeName="CookHelperModel.UNIT_MEASURE">
+              <MappingFragment StoreEntitySet="UNIT_MEASURE">
+                <ScalarProperty Name="id_unit_measure" ColumnName="id_unit_measure" />
+                <ScalarProperty Name="name_unit_measure" ColumnName="name_unit_measure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

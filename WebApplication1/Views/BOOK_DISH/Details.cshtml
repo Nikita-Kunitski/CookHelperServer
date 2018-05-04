@@ -1,0 +1,82 @@
+﻿@model WebApplication1.Models.BOOK_DISH
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BOOK_DISH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name_dish)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_dish)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.calories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imageData)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imageData)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COOKING_METHOD.name_method)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COOKING_METHOD.name_method)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CUISINE_NATIONAL.name_cuisine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CUISINE_NATIONAL.name_cuisine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CUISINE_TYPE.name_cuisine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CUISINE_TYPE.name_cuisine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TYPE_DISH.name_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TYPE_DISH.name_type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.C_id_dish }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
