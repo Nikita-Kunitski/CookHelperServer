@@ -162,6 +162,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BOOK_DISHController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\INGREDIENTsController.cs" />
     <Compile Include="Controllers\RECIPEsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -277,6 +278,11 @@
     <Content Include="Views\RECIPEs\Details.cshtml" />
     <Content Include="Views\RECIPEs\Edit.cshtml" />
     <Content Include="Views\RECIPEs\Index.cshtml" />
+    <Content Include="Views\INGREDIENTs\Create.cshtml" />
+    <Content Include="Views\INGREDIENTs\Delete.cshtml" />
+    <Content Include="Views\INGREDIENTs\Details.cshtml" />
+    <Content Include="Views\INGREDIENTs\Edit.cshtml" />
+    <Content Include="Views\INGREDIENTs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

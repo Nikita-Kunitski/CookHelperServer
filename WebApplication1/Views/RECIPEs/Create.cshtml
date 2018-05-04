@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+
 
 
 @using (Html.BeginForm()) 
@@ -12,11 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>RECIPE</h4>
+        <h2>Добавление ингредиента в рецепт</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.C_id_ingred, "C_id_ingred", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Наименование ингредиента</label>
             <div class="col-md-10">
                 @Html.DropDownList("C_id_ingred", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.C_id_ingred, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.C_id_dish, "C_id_dish", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Наименование блюда</label>
             <div class="col-md-10">
                 @Html.DropDownList("C_id_dish", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.C_id_dish, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.kol, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Количество</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.kol, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.kol, "", new { @class = "text-danger" })
