@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BOOK_DISHController.cs" />
+    <Compile Include="Controllers\COOKING_STAGESController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\INGREDIENTsController.cs" />
     <Compile Include="Controllers\RECIPEsController.cs" />
@@ -283,6 +284,11 @@
     <Content Include="Views\INGREDIENTs\Details.cshtml" />
     <Content Include="Views\INGREDIENTs\Edit.cshtml" />
     <Content Include="Views\INGREDIENTs\Index.cshtml" />
+    <Content Include="Views\COOKING_STAGES\Create.cshtml" />
+    <Content Include="Views\COOKING_STAGES\Delete.cshtml" />
+    <Content Include="Views\COOKING_STAGES\Details.cshtml" />
+    <Content Include="Views\COOKING_STAGES\Edit.cshtml" />
+    <Content Include="Views\COOKING_STAGES\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
