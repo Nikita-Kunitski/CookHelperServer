@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class COOKING_STAGESController : Controller
     {
-        private CookHelperEntities db = new CookHelperEntities();
+        private CookHelperEntities db = new CookHelperEntities();   
 
         // GET: COOKING_STAGES
         public ActionResult Index()

@@ -1,5 +1,5 @@
 ﻿@model WebApplication1.Models.BOOK_DISH
-
+@using WebApplication1.Models
 @{
     ViewBag.Title = "Details";
 }
@@ -68,8 +68,27 @@
         </dd>
 
     </dl>
-    
-    
+    <h2>Игнредиенты</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (RECIPE item in Model.RECIPEs)
+        {
+            <dt>@item.INGREDIENT.name_ingredient</dt>
+            <dd>@item.kol @item.INGREDIENT.UNIT_MEASURE.name_unit_measure</dd>
+        }
+    </dl>
+    <h2>Инструкция</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        @{ int stage = 0;
+            foreach (COOKING_STAGES item in Model.COOKING_STAGES)
+            {
+                stage++;
+            <dt>@stage</dt>
+            <dd>@item.C_text</dd>
+                }
+            }
+    </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.C_id_dish }) |
