@@ -88,7 +88,7 @@
             <label class="control-label col-md-2">Этап 1</label>
 
             <div class="col-md-10 row">
-                <input class="form-control col-md-10" type="text" />
+                <input id="Step1" class ="form-control col-md-10" type="text" />
                 <input class="btn btn-default" type="button" value="  +  " onclick="addQuestion()" />
             </div>
         </div>
@@ -106,10 +106,11 @@
 
                 var newdiv = document.createElement("div");
                 newdiv.setAttribute("class", "form-group");
-                newdiv.innerHTML = "<label class='control-label col-md-2'>Этап " + num++ + "</label><div class='col-md-10 row'><input class='form-control col-md-10' type='text' /><input class='btn btn-default' type='button' value='  +  ' onclick='addQuestion()' /></div>";
+                newdiv.innerHTML = "<label class='control-label col-md-2'>Этап " + num + "</label><div class='col-md-10 row'><input id='Step"+num+"' class='form-control col-md-10' type='text' /><input class='btn btn-default' type='button' value='  +  ' onclick='addQuestion()' /></div>";
                 var div = document.getElementById("parentId");
                 var parentDiv = div.parentElement;
                 parentDiv.insertBefore(newdiv, div);
+                num++;
                 return false;
             }
         </script>

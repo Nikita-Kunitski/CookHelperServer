@@ -54,7 +54,7 @@ namespace WebApplication1.Controllers
             {
                 db.COOKING_STAGES.Add(cOOKING_STAGES);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.C_id_dish = new SelectList(db.BOOK_DISH, "C_id_dish", "name_dish", cOOKING_STAGES.C_id_dish);
