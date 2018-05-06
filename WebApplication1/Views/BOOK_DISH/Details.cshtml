@@ -4,38 +4,31 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+
 
 <div>
-    <h4>BOOK_DISH</h4>
+    <h2>@Html.DisplayFor(model => model.name_dish)</h2>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.name_dish)
+            <label class="control-label ">Время приготовления</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.name_dish)
+            @Html.DisplayFor(model => model.time_pr) мин
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.time_pr)
+            <label class="control-label ">Каллорийность</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.time_pr)
+            @Html.DisplayFor(model => model.calories) ккал
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.calories)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.calories)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.imageData)
+            <label class="control-label ">Фото</label>
         </dt>
 
         <dd>
@@ -43,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.COOKING_METHOD.name_method)
+            <label class="control-label ">Метод приготовления</label>
         </dt>
 
         <dd>
@@ -51,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CUISINE_NATIONAL.name_cuisine)
+            <label class="control-label ">Кухня</label>
         </dt>
 
         <dd>
@@ -59,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CUISINE_TYPE.name_cuisine)
+            <label class="control-label ">Категория</label>
         </dt>
 
         <dd>
@@ -67,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TYPE_DISH.name_type)
+            <label class="control-label ">Тип блюда</label>
         </dt>
 
         <dd>
@@ -75,6 +68,8 @@
         </dd>
 
     </dl>
+    
+    
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.C_id_dish }) |

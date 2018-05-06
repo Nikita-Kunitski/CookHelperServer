@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WebApplication1.Models.BOOK_DISH>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Каталог игроков</h2>
+
+<style>
+    table, tr, td, th {
+    border:1px solid;
+    }
+</style>
+
+<table >
+    <tr>
+        <th>Название рецепта</th>
+        <th>Время приготовления</th>
+        <th>Кухня</th>
+        <th>Способ приготовления</th>
+        <th>Тип блюда</th>
+        <th>Категория</th>
+        <th>Каллории</th>
+        <th>Фото</th>
+        <th>Игредиенты</th>
+        <th></th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name_dish)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time_pr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CUISINE_NATIONAL.name_cuisine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COOKING_METHOD.name_method)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TYPE_DISH.name_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CUISINE_TYPE.name_cuisine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.calories)
+        </td>
+        <td> 
+            @Html.DisplayFor(modelItem => item.imageData)
+        </td>
+        <td>
+            @foreach (var itemR in item.RECIPEs)
+            {
+            @Html.DisplayFor(modelItem => itemR.INGREDIENT.name_ingredient)
+                <br/>
+            }
+        </td>
+        
+    </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Каталог команд", "ListTeams")
+</p>
