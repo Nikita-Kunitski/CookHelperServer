@@ -55,7 +55,7 @@ namespace WebApplication1.Controllers
             {
                 db.RECIPEs.Add(rECIPE);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.C_id_dish = new SelectList(db.BOOK_DISH, "C_id_dish", "name_dish", rECIPE.C_id_dish);
