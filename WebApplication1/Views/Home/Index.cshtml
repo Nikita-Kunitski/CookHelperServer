@@ -1,5 +1,61 @@
-﻿
+﻿@model WebApplication1.Models.INGREDIENT
 @{
     ViewBag.Title = "Home Page";
 }
 
+
+@using (Html.BeginForm())
+{
+    <br/>
+    <br/>
+<div class="form-horizontal" id="parentElement">
+    <div class="form-group">
+        <label class="control-label col-md-2">Ингредиент 1</label>
+
+        <div class="col-md-10 row">
+            @Html.DropDownListFor(model=>model.C_id_ingred,ViewBag.INGREDIENTs as SelectList, new { @class = "ingr" })
+            <input class="btn btn-default" type="button" value="  +  " onclick="addQuestion()" />
+        </div>
+    </div>
+
+    <div class="form-group" id="parentId"></div>
+
+    <script>
+        var num = 2;
+        function addQuestion() {
+            //<input class='form-control col-md-10 Steps' type='text' />
+            var newdiv = document.createElement("div");
+            var selectItem = document.getElementById("C_id_ingred");
+            var codeHTML = selectItem.outerHTML;
+            newdiv.setAttribute("class", "form-group");
+            newdiv.innerHTML = "<label class='control-label col-md-2'>Игредиент " + num + "</label><div class='col-md-10 row'>" + codeHTML + "<input class='btn btn-default' type='button' value='  +  ' onclick='addQuestion()' /></div>";
+            var div = document.getElementById("parentId");
+            var parentDiv = div.parentElement;
+            parentDiv.insertBefore(newdiv, div);
+            num++;
+            return false;
+        }
+
+        function append_to_array() {
+            var selectItem = document.getElementsByClassName("ingr");
+            var arr = [];
+            for (var i = 0; i < selectItem.length; i++) {
+                for (var j = 0; j < selectItem[i].options.length; j++) {
+                    var option_ = selectItem[i].options[j];
+                    if (option_.selected) {
+                        arr.push(option_.text);
+                    }
+                }
+            }
+            alert(arr);
+            //$.post("../../Controllers/HomeController",);
+        }
+
+    </script>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Поиск" class="btn btn-default" onclick="append_to_array()"/>
+        </div>
+    </div>
+</div>
+}

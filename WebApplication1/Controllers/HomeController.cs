@@ -13,6 +13,8 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index()
         {
+            SelectList item = new SelectList(db.INGREDIENTs, "C_id_ingred", "name_ingredient");
+            ViewBag.INGREDIENTs = item;
             return View();
         }
 
