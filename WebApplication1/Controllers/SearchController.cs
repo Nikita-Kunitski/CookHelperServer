@@ -6,10 +6,11 @@ using System.Web.Mvc;
 
 namespace WebApplication1.Controllers
 {
-    public class testController : Controller
+    public class SearchController : Controller
     {
-        // GET: test
-        public ActionResult Index()
+        // GET: Search
+        [HttpGet]
+        public ActionResult Index(string[] arg)
         {
             return View();
         }

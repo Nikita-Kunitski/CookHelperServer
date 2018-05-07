@@ -165,8 +165,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\INGREDIENTsController.cs" />
     <Compile Include="Controllers\RECIPEsController.cs" />
-    <Compile Include="Controllers\StartController.cs" />
-    <Compile Include="Controllers\testController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -291,8 +290,7 @@
     <Content Include="Views\COOKING_STAGES\Details.cshtml" />
     <Content Include="Views\COOKING_STAGES\Edit.cshtml" />
     <Content Include="Views\COOKING_STAGES\Index.cshtml" />
-    <Content Include="Views\Start\Index.cshtml" />
-    <Content Include="Views\test\Index.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

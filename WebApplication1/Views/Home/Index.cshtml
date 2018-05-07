@@ -6,6 +6,7 @@
 
 @using (Html.BeginForm())
 {
+    <meta charset="utf-8"/>
     <br/>
     <br/>
 <div class="form-horizontal" id="parentElement">
@@ -47,8 +48,17 @@
                     }
                 }
             }
-            alert(arr);
-            //$.post("../../Controllers/HomeController",);
+            var xhr = new XMLHttpRequest();
+            var param = '';
+            for (var i = 0; i < arr.length; i++) {
+                param += 'ingredient' + (i + 1) + '=' + arr[i];
+                if (i != arr.length - 1)
+                    param+='&'
+            }
+            alert(param);
+            xhr.open("GET", "http://localhost:65274/Search/" + param)
+            xhr.send();
+            
         }
 
     </script>
