@@ -16,6 +16,7 @@ namespace WebApplication1.Controllers
         {
           
             int index = 0;
+            List<Statistics> statistics = new List<Statistics>();
             List<string> index_ = new List<string>();//список id ингредиентов, которые были в запросе
             using (CookHelperEntities db = new CookHelperEntities())
             {
@@ -28,7 +29,7 @@ namespace WebApplication1.Controllers
                     index_.Add(Request.Params[item]);
                     index++;
                 }              
-                List<Statistics> statistics = new List<Statistics>();
+                
                 List<RECIPE> recipe = db.RECIPEs.ToList();
                 List<INGREDIENT> ingred = db.INGREDIENTs.ToList();
                 var group_recipes = from item in recipe
@@ -44,13 +45,13 @@ namespace WebApplication1.Controllers
                             if (ingred.ElementAt(ingr_dish.C_id_ingred - 1).name_ingredient.Equals(item))
                                 index_coincidence++;
                         }
-                    }
+                        }
                     statistics.Add(new Statistics(g.Key, g.Count(), index_coincidence));
                 }
-
+                return View();
 
             }
-           return View();
+           
         }
     }
 }

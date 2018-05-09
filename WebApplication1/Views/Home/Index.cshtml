@@ -21,6 +21,7 @@
 
     <div class="form-group" id="parentId"></div>
 
+    <label id="responce"></label>
     <script>
         var num = 2;
         function addQuestion() {
@@ -57,9 +58,11 @@
                     param+='&'
             }
             alert(param);
-            xhr.open("GET", "http://localhost:65274/Test/" + param)
+            xhr.open("GET", "http://localhost:65274/Search/Index/" + param)
             xhr.send();
             
+            var resp = document.getElementById("responce");
+            return xhr.responseText;
         }
 
     </script>
