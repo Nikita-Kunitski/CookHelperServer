@@ -15,7 +15,7 @@
 
         <div class="col-md-10 row">
             @Html.DropDownListFor(model=>model.C_id_ingred,ViewBag.INGREDIENTs as SelectList, new { @class = "ingr" })
-            <input class="btn btn-default" type="button" value="  +  " onclick="addQuestion()" />
+            <input class="btn btn-default" type="submit" value="  +  " onclick="addQuestion()" />
         </div>
     </div>
 
@@ -29,7 +29,7 @@
             var selectItem = document.getElementById("C_id_ingred");
             var codeHTML = selectItem.outerHTML;
             newdiv.setAttribute("class", "form-group");
-            newdiv.innerHTML = "<label class='control-label col-md-2'>Игредиент " + num + "</label><div class='col-md-10 row'>" + codeHTML + "<input class='btn btn-default' type='button' value='  +  ' onclick='addQuestion()' /></div>";
+            newdiv.innerHTML = "<label class='control-label col-md-2'>Ингредиент " + num + "</label><div class='col-md-10 row'>" + codeHTML + "<input class='btn btn-default' type='button' value='  +  ' onclick='addQuestion()' /></div>";
             var div = document.getElementById("parentId");
             var parentDiv = div.parentElement;
             parentDiv.insertBefore(newdiv, div);
@@ -48,15 +48,16 @@
                     }
                 }
             }
+            alert(arr);
             var xhr = new XMLHttpRequest();
-            var param = '';
+            var param = '?';
             for (var i = 0; i < arr.length; i++) {
                 param += 'ingredient' + (i + 1) + '=' + arr[i];
                 if (i != arr.length - 1)
                     param+='&'
             }
             alert(param);
-            xhr.open("GET", "http://localhost:65274/Search/" + param)
+            xhr.open("GET", "http://localhost:65274/Test/" + param)
             xhr.send();
             
         }

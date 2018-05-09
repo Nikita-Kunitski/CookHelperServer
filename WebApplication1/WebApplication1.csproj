@@ -205,6 +205,7 @@
     <Compile Include="Models\RECIPE.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\TYPE_DISH.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
